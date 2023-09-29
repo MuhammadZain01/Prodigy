@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+  <style>
+    .calculator {
+      width: 200px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #display {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .heading {
+      text-align: center;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+    }
+
+    button {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1 class="heading">Calculator Made by Zain Paracha</h1>
+    <input type="text" id="display" readonly>
+    <div class="buttons">
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="operator">+</button>
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="operator">-</button>
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="operator">*</button>
+      <button id="clear">C</button>
+      <button class="number">0</button>
+      <button id="equal">=</button>
+      <button class="operator">/</button>
+    </div>
+  </div>
+  <script>
+    const display = document.getElementById("display");
+    const numberButtons = document.getElementsByClassName("number");
+    const operatorButtons = document.getElementsByClassName("operator");
+    const clearButton = document.getElementById("clear");
+    const equalButton = document.getElementById("equal");
+
+    for (let i = 0; i < numberButtons.length; i++) {
+      numberButtons[i].addEventListener("click", function () {
+        display.value += numberButtons[i].textContent;
+      });
+    }
+
+    for (let i = 0; i < operatorButtons.length; i++) {
+      operatorButtons[i].addEventListener("click", function () {
+        display.value += operatorButtons[i].textContent;
+      });
+    }
+
+    clearButton.addEventListener("click", function () {
+      display.value = "";
+    });
+
+    equalButton.addEventListener("click", function () {
+      try {
+        const result = eval(display.value);
+        display.value = result;
+      } catch (error) {
+        display.value = "Error";
+      }
+    });
+  </script>
+</body>
+</html>
